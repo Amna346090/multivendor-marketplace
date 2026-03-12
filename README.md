@@ -1,101 +1,123 @@
-# Eshop
+# E-Shop Monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A modern e-commerce platform built with a microservices architecture using Nx monorepo.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## 🏗️ Architecture
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+This project follows a microservices architecture pattern, with each service running independently and communicating through an API Gateway.
 
-## Run tasks
+### Services
 
-To run the dev server for your app, use:
+- **API Gateway** - Entry point for all client requests, routes to appropriate microservices
+- **Auth Service** - Handles authentication and authorization
 
-```sh
-npx nx serve eshop
-```
+## 🛠️ Tech Stack
 
-To create a production bundle:
+- **Monorepo**: [Nx](https://nx.dev) - Smart, fast and extensible build system
+- **Runtime**: Node.js with TypeScript
+- **Framework**: Express.js
+- **Testing**: Jest
+- **Containerization**: Docker
+- **Code Quality**: ESLint, Prettier
 
-```sh
-npx nx build eshop
-```
+## 📋 Prerequisites
 
-To see all available targets to run for a project, run:
+- Node.js (v18 or higher)
+- npm or yarn
+- Docker (optional, for containerized deployment)
 
-```sh
-npx nx show project eshop
-```
+## 🚀 Getting Started
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
+### Installation
 
 ```sh
-npx nx g @nx/node:app demo
+npm install
 ```
 
-To generate a new library, use:
+### Development
+
+Run all services in development mode:
 
 ```sh
-npx nx g @nx/node:lib mylib
+npm run dev
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
+Or run individual services:
 
 ```sh
-npx nx connect
+# Run API Gateway
+npx nx serve api-gateway
+
+# Run Auth Service
+npx nx serve auth-service
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+### Building
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
+Build all services:
 
 ```sh
-npx nx g ci-workflow
+npx nx run-many --target=build --all
 ```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Build a specific service:
 
-## Install Nx Console
+```sh
+npx nx build api-gateway
+npx nx build auth-service
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## 🧪 Testing
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Run tests for all projects:
 
-## Useful links
+```sh
+npx nx run-many --target=test --all
+```
 
-Learn more:
+Run tests for a specific project:
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```sh
+npx nx test auth-service
+npx nx test auth-service-e2e
+```
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 🐳 Docker
+
+Each service includes a Dockerfile for containerized deployment:
+
+```sh
+# Build Docker image for a service
+docker build -t api-gateway ./apps/api-gateway
+docker build -t auth-service ./apps/auth-service
+```
+
+## 📁 Project Structure
+
+```
+eshop/
+├── apps/
+│   ├── api-gateway/          # API Gateway service
+│   ├── auth-service/          # Authentication service
+│   └── auth-service-e2e/      # E2E tests for auth service
+├── nx.json                    # Nx workspace configuration
+├── package.json               # Root package.json
+└── tsconfig.base.json         # Base TypeScript configuration
+```
+
+## 📝 Available Commands
+
+- `npm run dev` - Start all services in development mode
+- `npx nx graph` - Visualize the project dependency graph
+- `npx nx show project <project-name>` - Show available targets for a project
+- `npx nx lint <project-name>` - Lint a specific project
+- `npx nx test <project-name>` - Run tests for a specific project
+
+## 🔗 Useful Links
+
+- [Nx Documentation](https://nx.dev)
+- [Nx Plugin Registry](https://nx.dev/plugin-registry)
+
+## 📄 License
+
+MIT
