@@ -40,7 +40,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/eshop-e2e/**/*"]
+      "exclude": ["apps/auth-service-e2e/**/*"]
     },
     {
       "plugin": "@nx/docker",

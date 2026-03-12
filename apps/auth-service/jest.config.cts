@@ -10,7 +10,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: '@eshop/eshop',
+  displayName: '@eshop/auth-service',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {

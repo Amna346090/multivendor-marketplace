@@ -1,5 +1,5 @@
 {
-  "name": "@eshop/eshop",
+  "name": "@eshop/auth-service",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -12,15 +12,15 @@
         "defaultConfiguration": "production",
         "options": {
           "platform": "node",
-          "outputPath": "apps/eshop/dist",
+          "outputPath": "apps/auth-service/dist",
           "format": [
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/eshop/src/main.ts",
-          "tsConfig": "apps/eshop/tsconfig.app.json",
+          "main": "apps/auth-service/src/main.ts",
+          "tsConfig": "apps/auth-service/tsconfig.app.json",
           "assets": [
-            "apps/eshop/src/assets"
+            "apps/auth-service/src/assets"
           ],
           "esbuildOptions": {
             "sourcemap": true,
@@ -49,8 +49,8 @@
         "cache": true,
         "executor": "@nx/js:prune-lockfile",
         "outputs": [
-          "{workspaceRoot}/apps/eshop/dist/package.json",
-          "{workspaceRoot}/apps/eshop/dist/package-lock.json"
+          "{workspaceRoot}/apps/auth-service/dist/package.json",
+          "{workspaceRoot}/apps/auth-service/dist/package-lock.json"
         ],
         "options": {
           "buildTarget": "build"
@@ -62,7 +62,7 @@
         ],
         "cache": true,
         "outputs": [
-          "{workspaceRoot}/apps/eshop/dist/workspace_modules"
+          "{workspaceRoot}/apps/auth-service/dist/workspace_modules"
         ],
         "executor": "@nx/js:copy-workspace-modules",
         "options": {
@@ -84,15 +84,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@eshop/eshop:build",
+          "buildTarget": "@eshop/auth-service:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@eshop/eshop:build:development"
+            "buildTarget": "@eshop/auth-service:build:development"
           },
           "production": {
-            "buildTarget": "@eshop/eshop:build:production"
+            "buildTarget": "@eshop/auth-service:build:production"
           }
         }
       },
